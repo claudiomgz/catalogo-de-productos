@@ -1,7 +1,7 @@
 {
   "name": "ventas",
   "version": "1.0.0",
-  "description": "Administra productos.",
+  "description": "See README.md",
   "main": "server.js",
   "scripts": {
     "start": "node server",
