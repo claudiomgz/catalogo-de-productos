@@ -1,4 +1,4 @@
-# Sitio de ventas de productos tecnológicos.
+# eCommerce de productos tecnológicos.
 
 ### Descripción
 Administra productos.
