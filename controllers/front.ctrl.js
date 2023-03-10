@@ -1,6 +1,7 @@
 require('dotenv').config()
 let nodemailer = require('nodemailer'); // Para que funcione contacto
 const db = require('../db');
+db.connect();
 
 // GET
 const inicioGET =  (req, res) => {

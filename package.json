@@ -19,7 +19,8 @@
     "hbs": "^4.1.2",
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
-    "nodemailer": "^6.6.3"
+    "nodemailer": "^6.6.3",
+    "pg": "^8.10.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0"
