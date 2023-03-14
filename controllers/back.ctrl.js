@@ -32,9 +32,12 @@ const loginPOST = (req, res) => {
   const password = req.body.password;
 
   if (username && password) {
-    let sql = "SELECT * FROM cuentas WHERE email = ? AND password = ?";
+    let sql = `SELECT * FROM cuentas WHERE email = $1 AND password = $2`;
     db.query(sql, [username, password], (err, data) => {
-      if (data.length > 0) {
+      if (err) {
+        console.log(err);
+      }
+      if (data.rowCount == 1) {
         // todo bien, que me envie a admin
         req.session.loggedin = true; // se setea como true que el usuario ingresó
         req.session.username = username; // se setea el usuario según el mail de la base de datos
@@ -89,7 +92,7 @@ const agregarPOST = (req, res) => {
         error: `Ha pasado el siguiente error: ${err}`,
       });
     }
-    
+
     const productoDetalles = req.body;
     console.log("REQ FILE", req.file);
     const nombreImagen = req.file.filename;
