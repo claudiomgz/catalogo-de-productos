@@ -1,6 +1,6 @@
 # eCommerce de productos tecnológicos.
 
-## Sitio en desarrollo.
+>> _Sitio en desarrollo_
 
 ### Descripción:
 Administra productos.
