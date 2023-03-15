@@ -101,7 +101,7 @@ const productoGET_ID = (req, res) => {
   let logueado = req.session.loggedin; // true || undefined
   let usuario = req.session.username;
 
-  var sql = "SELECT * FROM productos WHERE id = ?";
+  var sql = "SELECT * FROM productos WHERE id = $1";
   db.query(sql, [id], function (err, data) {
     console.log("ProductoGET_ID - DATA", data);
     console.log("ProductoGET_ID - DATA[0]", data[0]);
