@@ -21,14 +21,12 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 // middlewares
 app.use(morgan('dev'))
-
 app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
-
 app.use(session({
-	secret: "codo a codo te ayuda a entrar al mundo de la programacion",
+	secret: "mamamamamamamama",
     resave: false,
 	saveUninitialized: false,
     cookie: { maxAge: 60000 }
@@ -45,5 +43,5 @@ app.use(function(req, res, next) {
 
  
 app.listen(PORT, () => {
-    console.log(`Servidor ONLINE en puerto ${PORT}`)
+    console.log(`Servidor ONLINE en puerto ${PORT}.`)
 })

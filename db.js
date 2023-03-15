@@ -1,4 +1,4 @@
-//CONFIGURACIÓN POSTGRES
+//CONFIGURACIÓN POSTGRES//
 require("dotenv").config();
 const { Pool } = require("pg");
 
@@ -13,12 +13,12 @@ const pool = new Pool({
 
 pool.connect((err) => {
   if (err) throw err;
-  console.log("DB esta conectada");
+  console.log("Base de datos conectada.");
 });
 
 setInterval(function () {
   pool.query("SELECT 1");
-  console.log("manteniendo viva la conexion");
+  console.log("Manteniendo viva la conexión.");
 }, 50000);
 
 module.exports = pool;
