@@ -12,8 +12,7 @@ hbs.registerHelper("dolarApeso", (objeto) => {
 
 })
 
-hbs.registerHelper("list", function(objeto) {
-
+hbs.registerHelper("list", (objeto) => {
 	// Convierto en array la lista de características separadas previamente con "coma"
 	let array = objeto.split(",");
 	var html = "<ul>";
