@@ -96,6 +96,7 @@ const contactoPOST = (req, res) => {
   });
 };
 
+//GET
 const productoGET_ID = (req, res) => {
   let id = req.params.id;
   let logueado = req.session.loggedin; // true || undefined
