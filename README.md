@@ -1,4 +1,4 @@
-# Catálogo de productos para una tienda en linea.
+# Catálogo de productos para una tienda en línea.
 
 _Sitio en desarrollo_
 
