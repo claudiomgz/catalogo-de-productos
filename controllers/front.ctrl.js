@@ -10,12 +10,11 @@ const inicioGET = (req, res) => {
   let sql = "SELECT * FROM productos";
   db.query(sql, function (err, data) {
     if (err) res.send(`Ocurrió un error ${err.code}`);
-
     res.render("inicio", {
-      titulo: "Mi emprendimiento",
+      titulo: "Bienvenido",
       logueado,
       usuario,
-      data,
+      data
     });
   });
 };

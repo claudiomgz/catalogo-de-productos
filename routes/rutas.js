@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 
 // RUTAS FRONT
-// =============================
 const {
   inicioGET,
   comoComprarGET,
@@ -18,9 +17,9 @@ router.get("/quienes-somos", quienesSomosGET);
 router.get("/contacto", contactoGET);
 router.post("/contacto", contactoPOST);
 router.get("/producto/:id", productoGET_ID);
+// ============================= //
 
 // RUTAS BACK
-// =============================
 const {
   adminGET,
   loginGET,
@@ -42,5 +41,6 @@ router.get("/editar/:id", editarGET_ID);
 router.post("/editar/:id", editarPOST_ID);
 router.get("/borrar/:id", borrarGET_ID);
 router.get("/logout", logoutGET);
+// ============================= //
 
 module.exports = router;

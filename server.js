@@ -1,6 +1,6 @@
 const express = require("express"); // Para configurar servidor
-require("dotenv").config(); // Variables de Entorno
 const morgan = require("morgan"); // Para mejorar el LOG de la consola del servidor
+const env = require("dotenv").config(); // Variables de Entorno
 const hbs = require("hbs"); // Páginas dinámicas usando Handlebars
 require("./helpers/helpers"); // Funciones extras y de ayuda para HBS
 const session = require("express-session"); // Para autorizaciones
@@ -8,9 +8,9 @@ const path = require("path"); // Permite poder indicar que otras rutas tener en 
 
 const app = express();
 
-let PORT = process.env.PORT || 3000; // Esta variable "PORT" no hay que definirla, ya existe en Heroku y es necesario aplicarla para que funcione en la plataforma.
+let PORT = env.parsed.PORT || 3000;
 
-// Handlebars
+// HANDLEBARS
 app.set("view engine", "hbs");
 app.set("views", [
   path.join("./views/front"),
@@ -19,7 +19,7 @@ app.set("views", [
 ]);
 hbs.registerPartials(__dirname + "/views/partials");
 
-// middlewares
+// MIDDLEWARES
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(
@@ -36,7 +36,7 @@ app.use(
   })
 );
 
-// rutas
+// RUTAS
 app.use("/", require("./routes/rutas"));
 app.use("/", express.static(__dirname + "/public"));
 
