@@ -20,14 +20,14 @@
             <div class="container">  
                 <section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     {{#if data}}
-                    {{#each data}}
+                    {{#each data.rows}}
                     <div class="col"> <!-- Producto -->
                         <div class="card shadow-sm">
-                            <img src="/uploads/" + {{data.imagen}} + "" alt="" class="img-fluid">
+                            <img src="/uploads/{{imagen}}" alt="" class="img-fluid">
                             
                             <div class="card-body">
-                                <p>{{data.nombre}}</p>
-                                <p class="card-text">{{data.descripcion}} que onda</p>
+                                <p>{{nombre}}</p>
+                                <p class="card-text">{{descripcion}}</p>
                                 <p class="lead">{{dolarApeso precio}}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">

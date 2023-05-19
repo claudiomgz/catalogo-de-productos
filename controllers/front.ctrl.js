@@ -14,7 +14,7 @@ const inicioGET = (req, res) => {
       titulo: "Bienvenido",
       logueado,
       usuario,
-      data
+      data,
     });
   });
 };
