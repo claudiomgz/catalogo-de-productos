@@ -1,39 +1,32 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     {{> head}}
-</head>
-
-<body class="login">
-
-
-<main class="form-signin">
-  <form action="login" method="post">
-  
-    <h1 class="h3 mb-3 text-center">Acceso al panel de control</h1>
-
-    <div class="form-floating">
-      <input type="email" class="form-control" id="username" placeholder="name@example.com" name="username">
-      <label for="username">Usuario</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password">
-      <label for="password">Contraseña</label>
-    </div>
-
+  </head>
+  <body class="login">
+    <main class="form-signin">
+      <form action="login" method="post">
     
-    <button class="w-100 btn btn-lg btn-info" type="submit">Entrar</button>
-  </form>
+        <h1 class="h3 mb-3 text-center">Acceso al panel de control</h1>
 
-  {{#if error}}
-    <div class="alert alert-danger mt-3" role="alert">{{error}}</div>
-  {{/if}}
-</main>
+        <div class="form-floating">
+          <input type="email" class="form-control" id="username" placeholder="name@example.com" name="username">
+          <label for="username">Usuario</label>
+        </div>
 
+        <div class="form-floating">
+          <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password">
+          <label for="password">Contraseña</label>
+        </div>
+        
+        <button class="w-100 btn btn-lg btn-info" type="submit">Entrar</button>
+      </form>
 
+    {{#if error}}
+      <div class="alert alert-danger mt-3" role="alert">{{error}}</div>
+    {{/if}}
 
-</body>
-
+    </main>
+  </body>
 </html>

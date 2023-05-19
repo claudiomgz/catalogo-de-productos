@@ -113,7 +113,7 @@ const productoGET_ID = (req, res) => {
     } else {
       res.render("producto", {
         // "data[0]" en vez de "data" porque sino da error con el helper "Cannot read property 'split' of undefined, dado que hay que extraer el objeto del array directamente"
-        data: data[0],
+        data: data.rows[0],
         usuario: usuario,
         logueado: logueado,
       });
