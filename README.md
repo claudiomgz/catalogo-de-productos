@@ -8,5 +8,5 @@ El sitio contiene la vista del catalogo en la pagina de inicio, en donde el usua
 Además, el sistema cuenta con el acceso al administrador de los productos que se muestran.
 
 ### Inicio de sesión:
-Usuario: test@test.com </br>
-Contraseña: test
+Usuario: admin</br>
+Contraseña: admin
