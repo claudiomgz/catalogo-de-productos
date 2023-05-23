@@ -2,14 +2,19 @@ const db = require("../db");
 const { upload, maxSizeMB, multer } = require("../helpers/helpers");
 const fs = require("fs");
 
+// GET
 const adminGET = (req, res) => {
-  if (req.session.loggedin) {
+  let logueado = req.session.loggedin;
+  if (logueado) {
+    let usuario = req.session.username;
     let sql = "SELECT * FROM productos";
     db.query(sql, (err, data) => {
       if (err) res.send(`Ocurrió un error ${err.code}`);
       res.render("admin", {
         titulo: "Panel de control",
         data,
+        logueado,
+        usuario,
       });
     });
   } else {
@@ -32,7 +37,7 @@ const loginPOST = (req, res) => {
   const password = req.body.password;
 
   if (username && password) {
-    let sql = `SELECT * FROM cuentas WHERE email = $1 AND password = $2`;
+    let sql = `SELECT * FROM cuentas WHERE username = $1 AND password = $2`;
     db.query(sql, [username, password], (err, data) => {
       if (err) {
         console.log(err);
@@ -42,7 +47,8 @@ const loginPOST = (req, res) => {
         req.session.loggedin = true; // se setea como true que el usuario ingresó
         req.session.username = username; // se setea el usuario según el mail de la base de datos
         res.redirect("/admin");
-      } else {
+      } 
+      else {
         res.render("login", {
           titulo: "Login",
           error: "Nombre de usuario o contraseña incorrecto",
@@ -112,14 +118,15 @@ const agregarPOST = (req, res) => {
 };
 
 const editarGET_ID = (req, res) => {
-  if (req.session.loggedin) {
+  const logueado = req.session.loggedin;
+  if (logueado) {
     const id = req.params.id; // Tomar ID del producto
-    const sql = `SELECT * FROM productos WHERE id= ?`;
-    db.query(sql, [id], (err, data) => {
+    const sql = 'SELECT * FROM productos WHERE id = $1';
+    const values = [id];
+    db.query(sql, values, (err, data) => {
       if (err) res.send(`Ocurrió un error ${err.code}`);
-      console.log("editarGET_ID - DATA", data);
-      console.log("editarGET_ID - DATA[0]", data[0]);
-      if (data == "") {
+      //Acá el data ya viene del RES.
+      if (!data) {
         res.send(`
                         <h1>no existe producto con id ${id}</h1>
                         <a href="./admin/">Ver listado de productos</a>    
@@ -127,7 +134,8 @@ const editarGET_ID = (req, res) => {
       } else {
         res.render("editar", {
           titulo: "Editar producto",
-          data: data[0],
+          data: data.rows[0],
+          logueado,
         });
       }
     });

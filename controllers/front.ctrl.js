@@ -109,7 +109,10 @@ const productoGET_ID = (req, res) => {
     if (data == "") {
       res
         .status(404)
-        .render("404", { mensaje: `Producto con ID ${id} no encontrado` });
+        .render("404", { 
+          mensaje: `Producto con ID ${id} no encontrado`,
+          titulo: "Producto no encontrado", 
+        });
     } else {
       res.render("producto", {
         // "data[0]" en vez de "data" porque sino da error con el helper "Cannot read property 'split' of undefined, dado que hay que extraer el objeto del array directamente"

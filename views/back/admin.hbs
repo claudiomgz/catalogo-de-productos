@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         {{> head}}
-        <!-->ACA AGREGO EL PAQUETE DE NPM SIMPLE-DATATABLE QUE LE DA FORMATO Y FUNCIONALIDADES EXTRAS A LAS VISTA DE TABLAS EN HTML<-->
+        <!-- ACA AGREGO EL PAQUETE DE NPM SIMPLE-DATATABLE QUE LE DA FORMATO Y FUNCIONALIDADES EXTRAS A LAS VISTA DE TABLAS EN HTML -->
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
     </head>
@@ -31,7 +31,9 @@
                             <tr>
                                 <th scope="row">{{id}}</th>
                                 <td>{{nombre}}</td>
-                                <td><img src="uploads/{{imagen}}" alt="imagen de {{nombre}}"></td>
+                                <td>
+                                    <img class="img-fluid" src="uploads/{{imagen}}" alt="imagen de {{nombre}}">
+                                </td>
                                 <td class="descripcion">
                                     <div>{{descripcion}}</div>
                                 </td>

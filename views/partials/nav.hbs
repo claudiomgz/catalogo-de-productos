@@ -7,6 +7,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav w-100">
+                {{#if logueado}}
+                    <li class="nav-item ms-auto">
+                        <p class="nav-link">Bienvenido {{usuario}}</p>
+                    </li>
+                    <li class="nav-item ms-auto">
+                        <a href="/logout" class="nav-link"> Cerrar Sesión </a>
+                    </li>
+                {{else}}
                 <li class="nav-item">
                     <a class="nav-link" href="/">Inicio</a>
                 </li>
@@ -22,18 +30,9 @@
                  <li class="nav-item">
                     <a class="nav-link" href="/contacto">Contacto</a>
                 </li>
-                {{#if logueado}}
-                    <li class="nav-item ms-auto">
-                        <a href="/logout" class="nav-link">LOGOUT: {{usuario}} </a>
-                    </li>
-                    <li>
-                        <a href="/admin" class="nav-link">ADMIN</a>
-                    </li>
-                {{else}}
-                    <li class="nav-item ms-auto">
-
-                        <a href="/login" class="nav-link">LOGIN </a>
-                    </li>
+                <li class="nav-item ms-auto">
+                    <a href="/login" class="nav-link">Iniciar Sesión </a>
+                </li>
                 {{/if}}
             </ul>
         </div>
