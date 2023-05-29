@@ -195,7 +195,7 @@ const editarPOST_ID = (req, res) => {
       });
     }
 
-    var sql = `UPDATE productos SET  ?WHERE id= ?`;
+    var sql = `UPDATE productos SET $1 WHERE id = $2`;
 
     db.query(sql, [productoDetalles, id], (err, data) => {
       if (err) res.send(`Ocurrió un error ${err.code}`);
