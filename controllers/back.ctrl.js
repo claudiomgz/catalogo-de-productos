@@ -177,17 +177,16 @@ const editarPOST_ID = (req, res) => {
       productoDetalles.imagen = nombreImagen;
 
       // Se procede a borrar la imagen del servidor
-      var borrarImagen = "SELECT imagen FROM productos WHERE id = ?";
+      var borrarImagen = "SELECT imagen FROM productos WHERE id = $1";
       db.query(borrarImagen, [id], function (err, data) {
         if (err) res.send(`Ocurrió un error ${err.code}`);
-
         console.log("EditarPOST_ID - DATA", data);
         fs.unlink("public/uploads/" + data[0].imagen, (err) => {
           if (err) res.send(`Ocurrió un error ${err.code}`);
 
-          var sql = `UPDATE productos SET ? WHERE id= ?`;
+          var sql = `UPDATE productos SET imagen = $1 WHERE id = $2`;
 
-          db.query(sql, [productoDetalles, id], function (err, data) {
+          db.query(sql, [productoDetalles.imagen, id], function (err, data) {
             if (err) res.send(`Ocurrió un error ${err.code}`);
             console.log(data.affectedRows + " registro(s) actualizado(s)");
           });
@@ -195,11 +194,17 @@ const editarPOST_ID = (req, res) => {
       });
     }
 
-    var sql = `UPDATE productos SET $1 WHERE id = $2`;
+    var sql = `UPDATE productos SET nombre = $1, precio = $2, descripcion = $3, caracteristicas = $4 WHERE id = $5`;
 
-    db.query(sql, [productoDetalles, id], (err, data) => {
-      if (err) res.send(`Ocurrió un error ${err.code}`);
-      console.log(data.affectedRows + " registro actualizado");
+    db.query(sql, [productoDetalles.nombre, productoDetalles.precio, productoDetalles.descripcion, productoDetalles.caracteristicas, id], (err, data) => {
+      if (err)
+      {
+        res.send(`Ocurrió un error ${err.code}`);
+      } 
+      else
+      {
+        console.log(data.rowCount + " registro actualizado.");
+      }
     });
 
     res.redirect("/admin");
