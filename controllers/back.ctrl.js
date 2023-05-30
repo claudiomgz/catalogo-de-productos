@@ -105,14 +105,28 @@ const agregarPOST = (req, res) => {
     productoDetalles.imagen = nombreImagen;
     console.log("PRODUCTO DETALLES", productoDetalles);
 
-    let sql = "INSERT INTO productos SET ?";
-    db.query(sql, productoDetalles, (err, data) => {
-      if (err) res.send(`Ocurrió un error ${err.code}`);
-      console.log("Información de cliente insertado correctamente ");
+    let sql = "INSERT INTO productos VALUES ($1,$2,$3,$4,$5)";
+    const id = db.query('SELECT max(id) FROM productos GROUP BY id', (err, data) => {
+      if(err)
+      {
+        res.send(`Ocurrió un error ${err.code}`);
+      }
     });
-    res.render("agregar", {
-      ok: "Producto agregado correctamente",
-      titulo: "Agregar producto",
+
+    db.query(sql, [id + 1, productoDetalles.nombre, productoDetalles.descripcion, productoDetalles.caracteristicas, productoDetalles.precio, productoDetalles.imagen], (err, data) => {
+      if (err)
+      {
+        res.send(`Ocurrió un error ${err.code}`);
+      } 
+      else
+      {
+        console.log("Información de cliente insertado correctamente.");
+        
+        res.render("agregar", {
+          ok: "Producto agregado correctamente",
+          titulo: "Agregar producto",
+        });
+      }
     });
   });
 };
