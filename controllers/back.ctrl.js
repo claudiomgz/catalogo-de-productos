@@ -42,7 +42,7 @@ const loginPOST = (req, res) => {
       if (err) {
         console.log(err);
       }
-      if (data.rowCount == 1) {
+      if (data.rowCount === 1) {
         // todo bien, que me envie a admin
         req.session.loggedin = true; // se setea como true que el usuario ingresó
         req.session.username = username; // se setea el usuario según el mail de la base de datos
@@ -105,15 +105,25 @@ const agregarPOST = (req, res) => {
     productoDetalles.imagen = nombreImagen;
     console.log("PRODUCTO DETALLES", productoDetalles);
 
-    let sql = "INSERT INTO productos VALUES ($1,$2,$3,$4,$5)";
-    const id = db.query('SELECT max(id) FROM productos GROUP BY id', (err, data) => {
+    let id;
+    db.query('SELECT max(id) FROM productos GROUP BY id', (err, data) => {
       if(err)
       {
         res.send(`Ocurrió un error ${err.code}`);
       }
+      else{
+        if (data.rowCount === 0)
+        {
+          id = 1;
+        }
+        else{
+          id = data.rows.id + 1;
+        }
+      }
     });
 
-    db.query(sql, [id + 1, productoDetalles.nombre, productoDetalles.descripcion, productoDetalles.caracteristicas, productoDetalles.precio, productoDetalles.imagen], (err, data) => {
+    let sql = "INSERT INTO productos (id, nombre, descripcion, caracteristicas, precio, imagen) VALUES ($1, $2, $3, $4, $5, $6)";
+    db.query(sql, [id, productoDetalles.nombre, productoDetalles.descripcion, productoDetalles.caracteristicas, productoDetalles.precio, productoDetalles.imagen], (err, data) => {
       if (err)
       {
         res.send(`Ocurrió un error ${err.code}`);

@@ -2,7 +2,6 @@ require("dotenv").config();
 let nodemailer = require("nodemailer"); // Para que funcione contacto
 const db = require("../db");
 
-// GET
 const inicioGET = (req, res) => {
   let logueado = req.session.loggedin; // true || undefined
   let usuario = req.session.username;
@@ -19,7 +18,6 @@ const inicioGET = (req, res) => {
   });
 };
 
-// GET
 const comoComprarGET = (req, res) => {
   let logueado = req.session.loggedin; // true || undefined
   let usuario = req.session.username;
@@ -31,7 +29,6 @@ const comoComprarGET = (req, res) => {
   });
 };
 
-// GET
 const quienesSomosGET = (req, res) => {
   let logueado = req.session.loggedin; // true || undefined
   let usuario = req.session.username;
@@ -42,8 +39,6 @@ const quienesSomosGET = (req, res) => {
     logueado: logueado,
   });
 };
-
-// GET
 const contactoGET = (req, res) => {
   let logueado = req.session.loggedin; // true || undefined
   let usuario = req.session.username;
@@ -55,7 +50,6 @@ const contactoGET = (req, res) => {
   });
 };
 
-// POST
 const contactoPOST = (req, res) => {
   // Definimos el transporter
   var transporter = nodemailer.createTransport({
@@ -95,7 +89,6 @@ const contactoPOST = (req, res) => {
   });
 };
 
-//GET
 const productoGET_ID = (req, res) => {
   let id = req.params.id;
   let logueado = req.session.loggedin; // true || undefined

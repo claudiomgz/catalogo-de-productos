@@ -12,8 +12,12 @@ const pool = new Pool({
 });
 
 pool.connect((err) => {
-  if (err) throw err;
-  console.log("Base de datos conectada.");
+  if (err) {
+    console.error('Error al conectar a la base de datos:', err);
+  } 
+  else {
+    console.log('Conexión exitosa a la base de datos');
+  }
 });
 
 setInterval(function () {
