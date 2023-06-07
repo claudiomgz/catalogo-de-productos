@@ -105,8 +105,9 @@ const agregarPOST = (req, res) => {
     productoDetalles.imagen = nombreImagen;
     console.log("PRODUCTO DETALLES", productoDetalles);
 
+    //Establezco ID nuevo producto.
     let id;
-    db.query('SELECT max(id) FROM productos GROUP BY id', (err, data) => {
+    db.query('SELECT max(id) FROM productos', (err, data) => {
       if(err)
       {
         res.send(`Ocurrió un error ${err.code}`);
@@ -117,7 +118,7 @@ const agregarPOST = (req, res) => {
           id = 1;
         }
         else{
-          id = data.rows.id + 1;
+          id = data.rows[0].max + 1;
         }
       }
     });
@@ -126,7 +127,7 @@ const agregarPOST = (req, res) => {
     db.query(sql, [id, productoDetalles.nombre, productoDetalles.descripcion, productoDetalles.caracteristicas, productoDetalles.precio, productoDetalles.imagen], (err, data) => {
       if (err)
       {
-        res.send(`Ocurrió un error ${err.code}`);
+        res.send(`Ocurrió un error al guardar en la base de datos. Error: ${err.code}`);
       } 
       else
       {
