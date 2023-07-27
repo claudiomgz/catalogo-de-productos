@@ -2,7 +2,6 @@ const db = require("../db");
 const { upload, maxSizeMB, multer } = require("../helpers/helpers");
 const fs = require("fs");
 
-// GET
 const adminGET = (req, res) => {
   let logueado = req.session.loggedin;
   if (logueado) {
@@ -262,7 +261,6 @@ const borrarGET_ID = (req, res) => {
   res.redirect("/admin");
 };
 
-// GET Logout
 const logoutGET = (req, res) => {
   console.log("req session", req.session);
 

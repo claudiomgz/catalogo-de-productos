@@ -1,76 +1,76 @@
 <!doctype html>
 <html lang="en">
-<head>
-   {{> head}}
-</head>
-<body>
-    <header>
-        {{> nav}}
-        <section class="py-5 text-center container">
-            <div class="row py-lg-5">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light">Mi tienda en línea</h1>
-                    <p class="lead text-muted">Bienvenido</p>
-                </div>
-            </div>
-        </section>
-    </header>
-    <main>   
-        <div class="album py-5 bg-light">
-            <div class="container">  
-                <section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    {{#if data}}
-                    {{#each data.rows}}
-                    <div class="col"> <!-- Producto -->
-                        <div class="card shadow-sm">
-                            <img src="/uploads/{{imagen}}" alt="" class="img-fluid">
-                            
-                            <div class="card-body">
-                                <p>{{nombre}}</p>
-                                <p class="card-text">{{descripcion}}</p>
-                                <p class="lead">{{dolarApeso precio}}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#verProducto-{{id}}">Ver detalles</a>
-                                    </div>
-                                   
-                                </div>
-                            </div><!-- /card-body -->
-                        </div><!-- /card -->
+    <head>
+    {{> head}}
+    </head>
+    <body>
+        <header>
+            {{> nav}}
+            <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="fw-light">Mi tienda en línea</h1>
+                        <p class="lead text-muted">Bienvenido</p>
                     </div>
-                        <!-- MODALS -->
-                        <div class="modal fade" id="verProducto-{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">{{nombre}}</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </section>
+        </header>
+        <main>   
+            <div class="album py-5 bg-light">
+                <div class="container">  
+                    <section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        {{#if data}}
+                        {{#each data.rows}}
+                        <div class="col"> <!-- Producto -->
+                            <div class="card shadow-sm">
+                                <img src="/uploads/{{imagen}}" alt="" class="img-fluid">
+                                
+                                <div class="card-body">
+                                    <p>{{nombre}}</p>
+                                    <p class="card-text">{{descripcion}}</p>
+                                    <p class="lead">{{dolarApeso precio}}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#verProducto-{{id}}">Ver detalles</a>
+                                        </div>
+                                    
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <img src="uploads/{{imagen}}" alt="" class="img-fluid">
-                                            </div>
-                                            <div class="col-6">
-                                                {{descripcion}}
-                        
-                                                <p class="lead mt-2">{{ dolarApeso precio}}</p>
-                        
-                                                <a href="/producto/{{id}}" class="btn btn-primary">Ver producto</a>
+                                </div><!-- /card-body -->
+                            </div><!-- /card -->
+                        </div>
+                            <!-- MODALS -->
+                            <div class="modal fade" id="verProducto-{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">{{nombre}}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <img src="uploads/{{imagen}}" alt="" class="img-fluid">
+                                                </div>
+                                                <div class="col-6">
+                                                    {{descripcion}}
+                            
+                                                    <p class="lead mt-2">{{ dolarApeso precio}}</p>
+                            
+                                                    <a href="/producto/{{id}}" class="btn btn-primary">Ver producto</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {{/each}}
-                    {{else}}
-                        <p class="text-danger">No hay productos actualmente</p>
-                    {{/if}}
-                </section>
-            </div><!-- /container -->
-        </div>
-    </main>
-    {{> footer}}
-</body>
+                        {{/each}}
+                        {{else}}
+                            <p class="text-danger">No hay productos actualmente</p>
+                        {{/if}}
+                    </section>
+                </div><!-- /container -->
+            </div>
+        </main>
+        {{> footer}}
+    </body>
 </html>

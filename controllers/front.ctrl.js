@@ -5,8 +5,8 @@ const db = require("../db");
 const inicioGET = (req, res) => {
   let logueado = req.session.loggedin; // true || undefined
   let usuario = req.session.username;
-
   let sql = "SELECT * FROM productos";
+
   db.query(sql, function (err, data) {
     if (err) res.send(`Ocurrió un error ${err.code}`);
     res.render("inicio", {
@@ -16,6 +16,7 @@ const inicioGET = (req, res) => {
       data,
     });
   });
+ 
 };
 
 const comoComprarGET = (req, res) => {
@@ -39,6 +40,7 @@ const quienesSomosGET = (req, res) => {
     logueado: logueado,
   });
 };
+
 const contactoGET = (req, res) => {
   let logueado = req.session.loggedin; // true || undefined
   let usuario = req.session.username;
