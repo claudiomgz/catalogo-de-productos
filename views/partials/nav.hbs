@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">LOGO</a>
+        <a class="navbar-brand" href="/">LOGO</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,22 +8,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav w-100">
                 {{#if logueado}}
-                    <li class="nav-item ms-auto">
+                    <li class="nav-item ">
                         <p class="nav-link">Bienvenido {{usuario}}</p>
                     </li>
-                    <li class="nav-item ms-auto">
-                        <a href="/admin" class="nav-link"> Panel de administración </a>
+                    <li class="nav-item ">
+                        <a href="/admin" class="nav-link"> Panel de control </a>
                     </li>
                     <li class="nav-item ms-auto">
                         <a href="/logout" class="nav-link"> Cerrar Sesión </a>
                     </li>
                 {{else}}
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/#productos">Productos</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/quienes-somos">Quienes somos</a>
                 </li>

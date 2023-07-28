@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
+.card-img-top {
+  max-height: 300px; /* Establece la altura máxima de las imágenes en 200px (ajusta este valor según tus necesidades) */
+  object-fit: contain; /* Ajusta la imagen para que cubra todo el espacio sin distorsionarla */
+}
+
+
 ul {
   padding: 0;
   list-style-position: inside;
@@ -14,7 +20,7 @@ body {
 #backend h1 {
   text-align: center;
   padding: 10px;
-  background-color: rgb(241, 246, 147);
+  background-color: #0dcaf0;
   color: rgb(65, 65, 65);
 }
 

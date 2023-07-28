@@ -4,9 +4,9 @@
         {{> head}}
     </head>
     <body id="backend">
-        <h1>Editando: {{data.nombre}}</h1>
         <div class="container mb-4">
             {{> nav}}
+            <h1>Editando: {{data.nombre}}</h1>
             <div class="editar-producto mt-4">
                 <form action="/editar/{{data.id}}" method="post" enctype="multipart/form-data">
                 <div class="row">

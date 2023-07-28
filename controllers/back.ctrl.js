@@ -25,7 +25,16 @@ const adminGET = (req, res) => {
 };
 
 const loginGET = (req, res) => {
-  res.render("login", { titulo: "Login" });
+  let logueado = req.session.loggedin;
+
+  if (logueado) 
+  {
+    return res.redirect('/admin');
+  }
+  else
+  {
+    res.render("login", { titulo: "Login" });
+  }
 };
 
 const loginPOST = (req, res) => {
