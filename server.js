@@ -1,5 +1,5 @@
 const express = require("express"); // Para configurar servidor
-const morgan = require("morgan"); // Para mejorar el LOG de la consola del servidor
+
 const env = require("dotenv").config(); // Variables de Entorno
 const hbs = require("hbs"); // Páginas dinámicas usando Handlebars
 require("./helpers/helpers"); // Funciones extras y de ayuda para HBS
@@ -25,7 +25,9 @@ hbs.registerPartials(__dirname + "/dist/views/partials");
   app.use("/", express.static(__dirname + "/dist/public"));
 } else {
   // Configurar Express para servir archivos estáticos desde la carpeta "public" en desarrollo
-  // HANDLEBARS
+  const morgan = require("morgan"); // Para mejorar el LOG de la consola del servidor// MIDDLEWARES
+  app.use(morgan("dev"));
+
   app.set("view engine", "hbs");
   app.set("views", [
   path.join("./views/front"),
@@ -39,7 +41,6 @@ hbs.registerPartials(__dirname + "/views/partials");
 }
 
 // MIDDLEWARES
-app.use(morgan("dev"));
 app.use(express.json());
 app.use(
   express.urlencoded({
