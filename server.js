@@ -7,17 +7,36 @@ const session = require("express-session"); // Para autorizaciones
 const path = require("path"); // Permite poder indicar que otras rutas tener en cuenta en views
 
 const app = express();
-
 let PORT = env.parsed.PORT || 3000;
+const isProduction = process.env.NODE_ENV === 'production';
 
-// HANDLEBARS
-app.set("view engine", "hbs");
-app.set("views", [
+if (isProduction) {
+  // Configurar Express para servir archivos estáticos desde la carpeta "dist" en producción
+  // HANDLEBARS
+  app.set("view engine", "hbs");
+  app.set("views", [
+  path.join("/dist/views/front"),
+  path.join("/dist/views/back"),
+  path.join("/dist/views"),
+]);
+hbs.registerPartials(__dirname + "/dist/views/partials");
+  // RUTAS
+  app.use("/", require("./dist/routes/rutas"));
+  app.use("/", express.static(__dirname + "/dist/public"));
+} else {
+  // Configurar Express para servir archivos estáticos desde la carpeta "public" en desarrollo
+  // HANDLEBARS
+  app.set("view engine", "hbs");
+  app.set("views", [
   path.join("./views/front"),
   path.join("./views/back"),
   path.join("./views"),
 ]);
 hbs.registerPartials(__dirname + "/views/partials");
+  // RUTAS
+  app.use("/", require("./routes/rutas"));
+  app.use("/", express.static(__dirname + "/public"));
+}
 
 // MIDDLEWARES
 app.use(morgan("dev"));
@@ -35,10 +54,6 @@ app.use(
     cookie: { maxAge: 60000 },
   })
 );
-
-// RUTAS
-app.use("/", require("./routes/rutas"));
-app.use("/", express.static(__dirname + "/public"));
 
 /* 404 not found */
 app.use(function (req, res, next) {
