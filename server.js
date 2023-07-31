@@ -7,7 +7,7 @@ const session = require("express-session"); // Para autorizaciones
 const path = require("path"); // Permite poder indicar que otras rutas tener en cuenta en views
 
 const app = express();
-let PORT = env.parsed.PORT || 3000;
+let PORT = 3000;
 const isProduction = process.env.NODE_ENV === 'production';
 
 if (isProduction) {
