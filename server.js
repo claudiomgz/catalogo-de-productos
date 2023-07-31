@@ -21,7 +21,6 @@ if (isProduction) {
 ]);
 hbs.registerPartials(__dirname + "/dist/views/partials");
   // RUTAS
-  app.use("/", require("./dist/routes/rutas"));
   app.use("/", express.static(__dirname + "/dist/public"));
 } else {
   // Configurar Express para servir archivos estáticos desde la carpeta "public" en desarrollo
