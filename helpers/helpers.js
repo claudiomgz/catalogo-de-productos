@@ -29,6 +29,7 @@ hbs.registerHelper("list", (objeto) => {
 // FUNCIONES EXTRAS
 /* Cálculo dolar */
 let dolarHOY;
+let dolar;
 axios
   .get("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
   .then((response) => {

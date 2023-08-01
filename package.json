@@ -4,7 +4,9 @@
   "description": "Catálogo de productos para una tienda en línea.",
   "main": "server.js",
   "scripts": {
-    "start": "node server"
+    "dev": "nodemon ./ --exec babel-node",
+    "build": "babel / -d dist && ncp views dist/views && ncp public dist/public",
+    "start": "node ./dist"
   },
   "keywords": [],
   "author": "Claudio Monguzzi",
@@ -22,7 +24,14 @@
     "pg": "^8.10.0"
   },
   "devDependencies": {
-    "morgan": "^1.10.0"
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9",
+    "@babel/node": "^7.22.6",
+    "@babel/plugin-transform-runtime": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "morgan": "^1.10.0",
+    "ncp": "^2.0.0",
+    "nodemon": "^3.0.1"
   },
   "repository": {
     "type": "git",
