@@ -21,12 +21,7 @@
     "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "nodemailer": "^6.6.3",
-    "pg": "^8.10.0",
-    "@babel/cli": "^7.22.9",
-    "@babel/core": "^7.22.9",
-    "@babel/node": "^7.22.6",
-    "@babel/plugin-transform-runtime": "^7.22.9",
-    "@babel/preset-env": "^7.22.9"
+    "pg": "^8.10.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.9",
