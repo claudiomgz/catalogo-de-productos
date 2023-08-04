@@ -6,45 +6,28 @@ require("./helpers/helpers"); // Funciones extras y de ayuda para HBS
 const session = require("express-session"); // Para autorizaciones
 const path = require("path"); // Permite poder indicar que otras rutas tener en cuenta en views
 
+// CREAR APP CON EXPRESS
 const app = express();
 
-// Determinar el modo de ejecución (desarrollo o producción)
-const isProduction = process.env.NODE_ENV === "production";
-
-// Configurar la ruta de las vistas
+// SETEAR MOTOR DE LAS VISTAS
 app.set("view engine", "hbs");
-const viewsPath = isProduction
-  ? [
-      path.join("./dist/views/front"),
-      path.join("./dist/views/back"),
-      path.join("./dist/views"),
-    ]
-  : [
-      path.join("./views/front"),
-      path.join("./views/back"),
-      path.join("./views"),
-    ];
+
+// RUTAS DE LAS VISTAS
+const viewsPath = [
+  path.join(__dirname, "views/front"),
+  path.join(__dirname, "views/back"),
+  path.join(__dirname, "views/partials"),
+];
 app.set("views", viewsPath);
 
-const partialPath = isProduction
-  ?  "/dist/views/partials"
-  :  "/views/partials";
-hbs.registerPartials(__dirname + partialPath);
+// RUTA DE LAS VISTAS PARTIALS
+hbs.registerPartials(__dirname + "/views/partials");
 
-// Configurar el middleware para servir archivos estáticos
-const publicPath = isProduction
-  ? path.join(__dirname, "dist/public")
-  : path.join(__dirname, "public");
-app.use("/", express.static(publicPath));
+// RUTAS
+app.use("/", require("./routes/rutas"));
 
-// // Configuración HANDLEBARS para dev
-// app.set("view engine", "hbs");
-// app.set("views", [
-//   path.join("./views/front"),
-//   path.join("./views/back"),
-//   path.join("./views"),
-// ]);
-// hbs.registerPartials(__dirname + "/views/partials");
+// RUTA CARPETA PÚBLICA
+app.use(express.static(path.join(__dirname, "public")));
 
 // MIDDLEWARES
 app.use(morgan("dev"));
@@ -55,6 +38,7 @@ app.use(
   })
 );
 
+//SESIÓN DEL USUARIO
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -64,16 +48,12 @@ app.use(
   })
 );
 
-// RUTAS
-app.use("/", require("./routes/rutas"));
-//app.use("/", express.static(__dirname + "/public"));
-
-/* 404 not found */
+// 404 NOT FOUND
 app.use(function (req, res, next) {
   res.status(404).render("404");
 });
 
-// Iniciar el servidor
+// INICAR EL SERVIDOR
 let PORT = env.parsed.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor ONLINE en puerto ${PORT}.`);
