@@ -2,7 +2,7 @@
   "name": "catalogo-de-productos",
   "version": "1.0.0",
   "description": "Catálogo de productos para una tienda en línea.",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "dev": "nodemon ./ --exec babel-node",
     "build": "babel / -d dist && ncp views dist/views && ncp public dist/public",
