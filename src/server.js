@@ -54,7 +54,7 @@ app.use(function (req, res, next) {
 });
 
 // INICAR EL SERVIDOR
-let PORT = env.env.PORT || 3000;
+let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor ONLINE en puerto ${PORT}.`);
 });
