@@ -9,6 +9,16 @@ const path = require("path"); // Permite poder indicar que otras rutas tener en 
 // CREAR APP CON EXPRESS
 const app = express();
 
+//SESIÓN DEL USUARIO
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 },
+  })
+);
+
 // SETEAR MOTOR DE LAS VISTAS
 app.set("view engine", "hbs");
 
@@ -35,16 +45,6 @@ app.use(express.json());
 app.use(
   express.urlencoded({
     extended: false,
-  })
-);
-
-//SESIÓN DEL USUARIO
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 60000 },
   })
 );
 
