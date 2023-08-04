@@ -41,5 +41,5 @@
   "bugs": {
     "url": "https://github.com/claudiomgz/catalogo-de-productos/issues"
   },
-  "homepage": "https://github.com/claudiomgz/catalogo-de-productos/blob/master/views/front/inicio.hbs"
+  "homepage": "https://github.com/claudiomgz/catalogo-de-productos/blob/master/src/views/front/inicio.hbs"
 }

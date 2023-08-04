@@ -33,12 +33,6 @@ app.set("views", viewsPath);
 // RUTA DE LAS VISTAS PARTIALS
 hbs.registerPartials(__dirname + "/views/partials");
 
-// RUTAS
-app.use("/", require("./routes/rutas"));
-
-// RUTA CARPETA PÚBLICA
-app.use(express.static(path.join(__dirname, "public")));
-
 // MIDDLEWARES
 app.use(morgan("dev"));
 app.use(express.json());
@@ -47,6 +41,12 @@ app.use(
     extended: false,
   })
 );
+
+// RUTAS
+app.use("/", require("./routes/rutas"));
+
+// RUTA CARPETA PÚBLICA
+app.use(express.static(path.join(__dirname, "public")));
 
 // 404 NOT FOUND
 app.use(function (req, res, next) {

@@ -38,8 +38,6 @@ const loginGET = (req, res) => {
 };
 
 const loginPOST = (req, res) => {
-  console.log("loginPOST - REQ.session:", req.session);
-
   // Tomar los campos del LOGIN
   const username = req.body.username;
   const password = req.body.password;
