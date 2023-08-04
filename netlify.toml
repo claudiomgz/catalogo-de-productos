@@ -1,3 +1,0 @@
-[build]
-command = "babel src -d dist && ncp src/views dist/views && ncp src/public dist/public"
-publish = "dist"
