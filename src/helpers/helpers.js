@@ -1,5 +1,6 @@
 const axios = require("axios");
 const hbs = require("hbs");
+const path = require("path");
 
 // HELPERS HANDLEBARS
 // {{precio}} --> objeto
@@ -52,7 +53,8 @@ const multer = require("multer");
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // cb = callback
-    cb(null, "./public/uploads/");
+    const rutaAnterior = path.resolve(__dirname, '..');
+    cb(null, path.join(rutaAnterior + "/public/uploads/"));
   },
   filename: (req, file, cb) => {
     console.log("OBJETO FILE", file);
