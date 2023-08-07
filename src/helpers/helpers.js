@@ -57,7 +57,6 @@ var storage = multer.diskStorage({
     cb(null, path.join(rutaAnterior + "/public/uploads/"));
   },
   filename: (req, file, cb) => {
-    console.log("OBJETO FILE", file);
     let fileExtension = file.originalname.split(".")[1];
     cb(null, `${file.originalname}-${Date.now()}.${fileExtension}`);
   },

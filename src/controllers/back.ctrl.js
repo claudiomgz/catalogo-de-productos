@@ -1,6 +1,7 @@
 const db = require("../db");
 const { upload, maxSizeMB, multer } = require("../helpers/helpers");
 const fs = require("fs");
+const path = require('path');
 
 const adminGET = (req, res) => {
   let logueado = req.session.loggedin;
@@ -106,31 +107,11 @@ const agregarPOST = (req, res) => {
     }
 
     const productoDetalles = req.body;
-    console.log("REQ FILE", req.file);
     const nombreImagen = req.file.filename;
     productoDetalles.imagen = nombreImagen;
-    console.log("PRODUCTO DETALLES", productoDetalles);
 
-    //Establezco ID nuevo producto.
-    let id;
-    db.query('SELECT max(id) FROM productos', (err, data) => {
-      if(err)
-      {
-        res.send(`Ocurrió un error ${err.code}`);
-      }
-      else{
-        if (data.rowCount === 0)
-        {
-          id = 1;
-        }
-        else{
-          id = data.rows[0].max + 1;
-        }
-      }
-    });
-
-    let sql = "INSERT INTO productos (id, nombre, descripcion, caracteristicas, precio, imagen) VALUES ($1, $2, $3, $4, $5, $6)";
-    db.query(sql, [id, productoDetalles.nombre, productoDetalles.descripcion, productoDetalles.caracteristicas, productoDetalles.precio, productoDetalles.imagen], (err, data) => {
+    let sql = "INSERT INTO productos (nombre, descripcion, caracteristicas, precio, imagen) VALUES ($1, $2, $3, $4, $5)";
+    db.query(sql, [productoDetalles.nombre, productoDetalles.descripcion, productoDetalles.caracteristicas, productoDetalles.precio, productoDetalles.imagen], (err, data) => {
       if (err)
       {
         res.send(`Ocurrió un error al guardar en la base de datos. Error: ${err.code}`);
@@ -212,7 +193,7 @@ const editarPOST_ID = (req, res) => {
       db.query(borrarImagen, [id], function (err, data) {
         if (err) res.send(`Ocurrió un error ${err.code}`);
         console.log("EditarPOST_ID - DATA", data);
-        fs.unlink("public/uploads/" + data[0].imagen, (err) => {
+        fs.unlink("public/uploads/" + data.rows[0].imagen, (err) => {
           if (err) res.send(`Ocurrió un error ${err.code}`);
 
           var sql = `UPDATE productos SET imagen = $1 WHERE id = $2`;
@@ -246,23 +227,25 @@ const borrarGET_ID = (req, res) => {
   const id = req.params.id;
 
   // Borrar fisicamente la imagen relacionada al producto
-  var borrarImagen = "SELECT imagen FROM productos WHERE id = ?";
+  var borrarImagen = "SELECT imagen FROM productos WHERE id = $1";
   db.query(borrarImagen, [id], function (err, data) {
-    console.log("borrarGET_ID - data[0].imagen", data[0].imagen);
+    console.log("borrarGET_ID - data.rows[0].imagen", data.rows[0].imagen);
     if (err) res.send(`Ocurrió un error ${err.code}`);
 
-    fs.unlink("public/uploads/" + data[0].imagen, (err) => {
+    const rutaCarpetaPadre = path.resolve(__dirname, '..');
+    const rutaImagen = path.join(rutaCarpetaPadre, "public/uploads/", data.rows[0].imagen);
+
+    fs.unlink(rutaImagen, (err) => {
       // Borro fisicamente la imagen
-      if (err) res.send(`Ocurrió un error ${err.code}`);
+      // if (err) res.send(`Ocurrió un error ${err.code}`);
       console.log(`La imagen del ID ${id} ha sido borrada`);
     });
   });
 
   // Borrar el registro de la base de datos
-  let sql = "DELETE FROM productos WHERE id = ?";
+  let sql = "DELETE FROM productos WHERE id = $1";
   db.query(sql, [id], (err, data) => {
     if (err) res.send(`Ocurrió un error ${err.code}`);
-    console.log(data.affectedRows + " registro borrado");
   });
 
   res.redirect("/admin");
