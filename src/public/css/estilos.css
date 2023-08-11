@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
+.m-auto {
+  margin: auto!important;
+}
 .card-img-top {
   max-height: 300px; /* Establece la altura máxima de las imágenes en 200px (ajusta este valor según tus necesidades) */
   object-fit: contain; /* Ajusta la imagen para que cubra todo el espacio sin distorsionarla */
@@ -9,6 +12,10 @@
 ul {
   padding: 0;
   list-style-position: inside;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
@@ -34,6 +41,15 @@ input#producto {
   font-size: 12px;
   line-height: 3;
 }
+
+.zoom {
+  transition: transform .3s;
+}
+
+.zoom:hover {
+  transform: scale(1.04);
+}
+
 .product-short-description {
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -403,10 +419,22 @@ body.login {
   background-color: #f5f5f5;
 }
 
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-floting {
+  border-color: #212529;
+  border: var(--darkreader-border--bs-border-width) solid var(--darkreader-border--bs-border-color);
+  position: relative;
+}
+
 body.login .form-signin {
   width: 100%;
   max-width: 330px;
-  padding: 15px;
+  padding: 1rem;
   margin: auto;
 }
 

@@ -22,21 +22,20 @@
                         {{#if data}}
                         {{#each data.rows}}
                         <div class="col-md-4"> <!-- Producto -->
-                            <div class="card shadow-sm">
+                            <a class="card shadow-sm zoom btn btn-sm" data-bs-toggle="modal" data-bs-target="#verProducto-{{id}}">
                                 <img src="/uploads/{{imagen}}" alt="" class="card-img-top">
                                 
                                 <div class="card-body">
                                     <p>{{nombre}}</p>
-                                    <p class="card-text">{{descripcion}}</p>
+                                    {{!-- <p class="card-text">{{descripcion}}</p> --}}
                                     <p class="lead">{{dolarApeso precio}}</p>
-                                    <div class="d-flex justify-content-between align-items-center">
+                                    {{!-- <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#verProducto-{{id}}">Ver detalles</a>
                                         </div>
-                                    
-                                    </div>
+                                    </div> --}}
                                 </div><!-- /card-body -->
-                            </div><!-- /card -->
+                            </a><!-- /card -->
                         </div>
                             <!-- MODALS -->
                             <div class="modal fade" id="verProducto-{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
