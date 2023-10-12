@@ -6,8 +6,6 @@ Además, el sistema cuenta con el acceso al administrador de los productos que s
 
 [Ir al proyecto en producción](https://catalogoapp.onrender.com/)
 
-<a href="https://www.google.com" target="_blank">Google</a>
-
 ### Inicio de sesión:
 #### Usuario: admin
 #### Contraseña: admin
