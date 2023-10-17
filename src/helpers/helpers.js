@@ -33,6 +33,8 @@ let dolarHOY;
 let dolar;
 axios
   .get("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
+  //NUEVA API DOLAR
+  //.get("https://api.bluelytics.com.ar/v2/latest")
   .then((response) => {
     dolar = response.data[0].casa.venta;
     dolar = dolar.replace(/,/g, ".");

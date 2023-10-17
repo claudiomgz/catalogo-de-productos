@@ -180,11 +180,11 @@ const editarPOST_ID = (req, res) => {
     const id = req.params.id;
     const productoDetalles = req.body;
 
-    console.log("Producto Detalles ", productoDetalles);
+    //console.log("Producto Detalles ", productoDetalles);
 
     // chequear si la edición incluyó cambio de imagen
     if (req.hasOwnProperty("file")) {
-      console.log("EditarPOST_ID - FILE", file);
+      //console.log("EditarPOST_ID - FILE", file);
       const nombreImagen = req.file.filename;
       productoDetalles.imagen = nombreImagen;
 
@@ -229,7 +229,7 @@ const borrarGET_ID = (req, res) => {
   // Borrar fisicamente la imagen relacionada al producto
   var borrarImagen = "SELECT imagen FROM productos WHERE id = $1";
   db.query(borrarImagen, [id], function (err, data) {
-    console.log("borrarGET_ID - data.rows[0].imagen", data.rows[0].imagen);
+    //console.log("borrarGET_ID - data.rows[0].imagen", data.rows[0].imagen);
     if (err) res.send(`Ocurrió un error ${err.code}`);
 
     const rutaCarpetaPadre = path.resolve(__dirname, '..');
@@ -252,7 +252,7 @@ const borrarGET_ID = (req, res) => {
 };
 
 const logoutGET = (req, res) => {
-  console.log("req session", req.session);
+  //console.log("req session", req.session);
 
   req.session.destroy((err) => {});
 

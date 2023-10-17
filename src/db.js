@@ -1,12 +1,12 @@
 //CONFIGURACIÓN POSTGRES//
-require("dotenv").config();
+const env = require("dotenv").config();
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASS,
+  user: env.DB_USER,
+  host: env.DB_HOST,
+  database: env.DB_NAME,
+  password: env.DB_PASS,
   port: 5432,
   ssl: true,
 });
@@ -20,10 +20,10 @@ pool.connect((err) => {
   }
 });
 
-setInterval(function () {
-  pool.query("SELECT 1");
-  console.log("Manteniendo viva la conexión.");
-}, 50000);
+// setInterval(function () {
+//   pool.query("SELECT 1");
+//   console.log("Manteniendo viva la conexión.");
+// }, 50000);
 
 module.exports = pool;
 

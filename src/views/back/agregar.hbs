@@ -77,7 +77,7 @@
     imagenDeProducto.style.opacity = 0;
     imagenDeProducto.addEventListener('change', updateImageDisplay);
 
-    console.log("preview.firstChild", preview.firstChild)
+    //console.log("preview.firstChild", preview.firstChild)
 
     function updateImageDisplay() {
         while (preview.firstChild) {
@@ -85,7 +85,7 @@
         }
 
         const curFiles = imagenDeProducto.files;
-        console.log("curFiles: ", curFiles)
+        //console.log("curFiles: ", curFiles)
         if (curFiles.length === 0) {
             const para = document.createElement('p');
             para.textContent = 'No hay una imagen seleccionada para subir';

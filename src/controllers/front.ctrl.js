@@ -62,8 +62,8 @@ const contactoPOST = (req, res) => {
     },
   });
   // Definimos el email
-  console.log("contactoPOST - REQ: ", req);
-  console.log("contactoPOST - REQ.BODY: ", req.body);
+  //console.log("contactoPOST - REQ: ", req);
+  //console.log("contactoPOST - REQ.BODY: ", req.body);
   let data = req.body;
   var mailOptions = {
     from: data.nombre,
@@ -98,8 +98,8 @@ const productoGET_ID = (req, res) => {
 
   var sql = "SELECT * FROM productos WHERE id = $1";
   db.query(sql, [id], function (err, data) {
-    console.log("ProductoGET_ID - DATA", data);
-    console.log("ProductoGET_ID - DATA[0]", data[0]);
+    //console.log("ProductoGET_ID - DATA", data);
+    //console.log("ProductoGET_ID - DATA[0]", data[0]);
     if (err) res.send(`Ocurrió un error ${err.code}`);
     if (data == "") {
       res
