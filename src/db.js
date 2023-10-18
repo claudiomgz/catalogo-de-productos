@@ -1,12 +1,12 @@
 //CONFIGURACIÓN POSTGRES//
-const env = require("dotenv").config();
-const { Pool } = require("pg");
+const env = require('dotenv').config()
+import { Pool } from "pg";
 
 const pool = new Pool({
-  user: env.DB_USER,
-  host: env.DB_HOST,
-  database: env.DB_NAME,
-  password: env.DB_PASS,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
   port: 5432,
   ssl: true,
 });
@@ -25,7 +25,7 @@ pool.connect((err) => {
 //   console.log("Manteniendo viva la conexión.");
 // }, 50000);
 
-module.exports = pool;
+export default pool;
 
 //CONFIGURACIÓN MYSQL//
 // require('dotenv').config()
