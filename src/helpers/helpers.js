@@ -32,12 +32,14 @@ hbs.registerHelper("list", (objeto) => {
 let dolarHOY;
 let dolar;
 axios
-  .get("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
+  //VIEJA API DOLAR
+  //.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
+  
   //NUEVA API DOLAR
-  //.get("https://api.bluelytics.com.ar/v2/latest")
+  .get("https://api.bluelytics.com.ar/v2/latest")
   .then((response) => {
-    dolar = response.data[0].casa.venta;
-    dolar = dolar.replace(/,/g, ".");
+    dolar = response.data.oficial.value_sell;
+    //dolar = dolar.replace(/,/g, ".");
     dolar = parseFloat(dolar);
   })
   .then(() => {

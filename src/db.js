@@ -1,6 +1,6 @@
 //CONFIGURACIÓN POSTGRES//
-const env = require('dotenv').config()
-import { Pool } from "pg";
+require("dotenv").config();
+const { Pool } = require("pg");
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -25,7 +25,7 @@ pool.connect((err) => {
 //   console.log("Manteniendo viva la conexión.");
 // }, 50000);
 
-export default pool;
+module.exports = pool;
 
 //CONFIGURACIÓN MYSQL//
 // require('dotenv').config()

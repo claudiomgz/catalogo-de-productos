@@ -1,10 +1,10 @@
-import express from "express"; // Para configurar servidor
-import morgan from "morgan"; // Para mejorar el LOG de la consola del servidor
-const env = require('dotenv').config()
-var hbs = require('hbs'); // Páginas dinámicas usando Handlebars
-import "./helpers/helpers"; // Funciones extras y de ayuda para HBS
-import session from "express-session"; // Para autorizaciones
-import { join } from "path"; // Permite poder indicar que otras rutas tener en cuenta en views
+const express = require("express"); // Para configurar servidor
+const morgan = require("morgan"); // Para mejorar el LOG de la consola del servidor
+const env = require("dotenv").config(); // Variables de Entorno
+const hbs = require("hbs"); // Páginas dinámicas usando Handlebars
+require("./helpers/helpers"); // Funciones extras y de ayuda para HBS
+const session = require("express-session"); // Para autorizaciones
+const path = require("path"); // Permite poder indicar que otras rutas tener en cuenta en views
 
 // CREAR APP CON EXPRESS
 const app = express();
@@ -12,10 +12,10 @@ const app = express();
 //SESIÓN DEL USUARIO
 app.use(
   session({
-    secret: env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 600000 },
+    cookie: { maxAge: 60000 },
   })
 );
 
@@ -24,9 +24,9 @@ app.set("view engine", "hbs");
 
 // RUTAS DE LAS VISTAS
 const viewsPath = [
-  join(__dirname, "views/front"),
-  join(__dirname, "views/back"),
-  join(__dirname, "views/partials"),
+  path.join(__dirname, "views/front"),
+  path.join(__dirname, "views/back"),
+  path.join(__dirname, "views/partials"),
 ];
 app.set("views", viewsPath);
 
@@ -46,10 +46,10 @@ app.use(
 app.use("/", require("./routes/rutas"));
 
 // RUTA CARPETA PÚBLICA
-app.use(express.static(join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // 404 NOT FOUND
-app.use(function (req, res) {
+app.use(function (req, res, next) {
   res.status(404).render("404");
 });
 

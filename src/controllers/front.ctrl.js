@@ -16,7 +16,6 @@ const inicioGET = (req, res) => {
       data,
     });
   });
- 
 };
 
 const comoComprarGET = (req, res) => {
