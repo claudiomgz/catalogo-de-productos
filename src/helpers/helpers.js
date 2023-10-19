@@ -53,7 +53,7 @@ axios
     console.log("error Axios", error);
   });
 
-const multer = require("multer");
+const multer = require("multer"); //Maneja la subida de archivos al directorio público.
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // cb = callback
@@ -62,13 +62,13 @@ var storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     let fileExtension = file.originalname.split(".")[1];
-    cb(null, `${file.originalname}-${Date.now()}.${fileExtension}`);
+    cb(null, `${Date.now()}.${fileExtension}`);
   },
 });
 
 var maxSize = 1024 * 1024 * 1; // 1MB
 var maxSizeMB = formatBytes(maxSize, 2);
-// FUNCION: : Manejar errores de la imagen cargada
+// FUNCION: Manejar errores de la imagen cargada
 var upload = multer({
   storage: storage,
   limits: { fileSize: maxSize },

@@ -15,9 +15,19 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 100000 },  //Tiempo de inactividad de la sesión
   })
 );
+
+// Middleware personalizado para refrescar la sesión.
+app.use((req, res, next) => {
+  // Verifica si el usuario está autenticado (puedes ajustar esto según tus necesidades)
+  if (req.session.user) {
+    // Actualiza la fecha de vencimiento de la sesión a un nuevo tiempo
+    req.session.cookie.expires = new Date(Date.now() + req.session.cookie.maxAge);
+  }
+  next();
+});
 
 // SETEAR MOTOR DE LAS VISTAS
 app.set("view engine", "hbs");
