@@ -20,10 +20,10 @@ pool.connect((err) => {
   }
 });
 
-// setInterval(function () {
-//   pool.query("SELECT 1");
-//   console.log("Manteniendo viva la conexión.");
-// }, 50000);
+setInterval(function () {
+  pool.query("SELECT 1");
+  console.log("Manteniendo viva la conexión.");
+}, 10000);
 
 module.exports = pool;
 
